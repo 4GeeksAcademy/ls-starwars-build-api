@@ -4,7 +4,7 @@ db = SQLAlchemy()
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    email= db.Column(db.String(120), unique=True, nullable=False)
     password = db.Column(db.String(80), unique=False, nullable=False)
     is_active = db.Column(db.Boolean(), unique=False, nullable=False)
     
@@ -84,8 +84,7 @@ class Characters(db.Model):
         }
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    char_id = db.Column(db.Integer,db.ForeignKey("characters.id"))
-    character = db.relationship('Characters')
+    char_id = db.Column(db.Integer)
     homeworld_id = db.Column(db.Integer,db.ForeignKey("planets.id"),nullable=True)
     homeworld = db.relationship('Planets')
     user_id= db.Column(db.Integer,db.ForeignKey("user.id"),nullable=True)

@@ -43,9 +43,15 @@ def get_user():
     response_body = list(map(lambda x: x.serialize(), all_users))
     return jsonify(response_body), 200
 
-@app.route('/characters', methods=['GET'])
-def get_all_character():
+@app.route('/user/<email_in>', methods=['GET'])
+def get_ind_user(email_in):
+    single_user = User.query.filter_by(email = email_in)
+    response_body = list(map(lambda x: x.serialize(),single_user))
+    return jsonify(response_body), 200
 
+@app.route('/characters', methods=['GET'])
+
+def get_all_character():
     all_characters = Characters.query.all()
     response_body = list(map(lambda x: x.serialize(), all_characters))
     return jsonify(response_body), 200

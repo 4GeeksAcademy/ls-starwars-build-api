@@ -84,7 +84,7 @@ class Characters(db.Model):
         }
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    char_id = db.Column(db.Integer)
+    char_name = db.Column(db.String(50),nullable=False)
     homeworld_id = db.Column(db.Integer,db.ForeignKey("planets.id"),nullable=True)
     homeworld = db.relationship('Planets')
     user_id= db.Column(db.Integer,db.ForeignKey("user.id"),nullable=True)

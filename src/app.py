@@ -83,7 +83,7 @@ def get_user_favorites(id):
 @app.route('/addfavorites', methods=['POST'])
 def post_favs():
     request_body=request.json
-    newfavoriteplanet = Favorites(user_id = request_body['user_id'] ,homeworld_id = request_body['homeworld_id'],char_id = request_body['char_id'])
+    newfavoriteplanet = Favorites(user_id = request_body['user_id'] ,homeworld_id = request_body['homeworld_id'],char_name=request_body['char_Name'])
     db.session.add(newfavoriteplanet)
     db.session.commit()
     return jsonify(f"sucess"), 200

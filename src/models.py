@@ -98,7 +98,7 @@ class Favorites(db.Model):
             "id":self.id,
             "user_id":self.user_id,
             "homeworld_id":self.homeworld_id,
-            "char_id":self.char_id
+            "char_name":self.char_name
         }
 
 

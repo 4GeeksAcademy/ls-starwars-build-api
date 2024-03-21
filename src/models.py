@@ -5,8 +5,7 @@ db = SQLAlchemy()
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email= db.Column(db.String(120), unique=True, nullable=False)
-    password = db.Column(db.String(80), unique=False, nullable=False)
-    is_active = db.Column(db.Boolean(), unique=False, nullable=False)
+   
     
 
     def __repr__(self):
@@ -60,8 +59,6 @@ class Characters(db.Model):
     eye_color = db.Column(db.String(250))
     birth_year = db.Column(db.String(250))
     gender = db.Column(db.String(250))
-    homeworld_id = db.Column(db.Integer,db.ForeignKey("planets.id"))
-    homeworld = db.relationship('Planets')
     
 
     
@@ -80,13 +77,11 @@ class Characters(db.Model):
             "eye_color":self.eye_color,
             "birth_year":self.birth_year,
             "gender":self.gender,
-            "homeworld_id":self.homeworld_id
         }
 class Favorites(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    char_name = db.Column(db.String(50),nullable=False)
-    homeworld_id = db.Column(db.Integer,db.ForeignKey("planets.id"),nullable=True)
-    homeworld = db.relationship('Planets')
+    char_name = db.Column(db.String(50),nullable=True)
+    planet_name = db.Column(db.String(250),nullable=True)
     user_id= db.Column(db.Integer,db.ForeignKey("user.id"),nullable=True)
     user= db.relationship('User')
     
@@ -97,7 +92,7 @@ class Favorites(db.Model):
         return {
             "id":self.id,
             "user_id":self.user_id,
-            "homeworld_id":self.homeworld_id,
+            "planet_name":self.planet_name,
             "char_name":self.char_name
         }
 

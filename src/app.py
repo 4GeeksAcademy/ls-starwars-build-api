@@ -83,10 +83,19 @@ def get_user_favorites(id):
 @app.route('/addfavorites', methods=['POST'])
 def post_favs():
     request_body=request.json
-    newfavoriteplanet = Favorites(user_id = request_body['user_id'] ,homeworld_id = request_body['homeworld_id'],char_name=request_body['char_Name'])
+    newfavoriteplanet = Favorites(user_id = request_body['user_id'] ,planet_name = request_body['planet_name'],char_name=request_body['char_Name'])
     db.session.add(newfavoriteplanet)
     db.session.commit()
     return jsonify(f"sucess"), 200
+
+@app.route('/adduser', methods=['POST'])
+def post_user():
+    request_body=request.json
+    newUser = User(email = request_body['emailName'])
+    db.session.add(newUser)
+    db.session.commit()
+    return jsonify(f"sucess"), 200
+
 
 @app.route('/deletefavorite/<id>', methods=['DELETE'])
 def delete_favs(id):
